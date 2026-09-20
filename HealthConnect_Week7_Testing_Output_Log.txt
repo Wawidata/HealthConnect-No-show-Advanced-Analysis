@@ -1,0 +1,74 @@
+=== TEST 1: Core KPI validation ===
+{'cancellation_rate': np.float64(0.0526), 'cancellation_n': np.int64(263), 'total_n': 5000, 'noshow_rate': np.float64(0.5115051720498206), 'noshow_base_n': 4737, 'noshow_n': 2423}
+
+=== TEST 2: Data integrity checks ===
+{'duplicate_appointment_ids': 0, 'is_noshow_vs_outcome_mismatches': 0, 'in_noshow_base_vs_cancelled_mismatches': 0, 'reminder_flag_mismatches': 0, 'has_prior_noshow_vs_previous_no_shows_mismatches': 0}
+
+=== TEST 3: Risk segmentation predictive validity ===
+                 n  noshow_rate  pct_of_base
+risk_segment                                
+Low            524     0.278626     0.110619
+Baseline      2024     0.468379     0.427275
+High          1755     0.591453     0.370488
+Triple-risk    434     0.670507     0.091619
+Monotonic (higher tier -> higher no-show rate): True
+
+=== TEST 4: Driver significance (chi-square p-values) ===
+{'reminder_sent': np.float64(0.003845091835796708), 'has_prior_noshow': np.float64(5.873043493889744e-15), 'lead_bracket': np.float64(4.622957264246653e-73), 'distance_band': np.float64(0.001075162141193157)}
+
+=== TEST 5: Segment consistency ===
+Overall no-show rate: 0.5115051720498206
+
+-- gender --
+                      n  noshow_rate
+gender                              
+Prefer not to say   105     0.447619
+Female             2358     0.511026
+Male               2274     0.514952
+
+-- age_group --
+              n  noshow_rate
+age_group                   
+65+        1165     0.480687
+45-54       746     0.510724
+35-44       770     0.514286
+18-24       540     0.524074
+25-34       750     0.529333
+55-64       766     0.530026
+
+-- appointment_type --
+                            n  noshow_rate
+appointment_type                          
+General Consultation     1980     0.491414
+Specialist Consultation   846     0.504728
+Diagnostic Test           567     0.520282
+Follow-up                1344     0.541667
+
+-- appointment_day --
+                   n  noshow_rate
+appointment_day                  
+Friday           696     0.487069
+Tuesday          662     0.489426
+Saturday         683     0.496340
+Thursday         644     0.520186
+Wednesday        693     0.528139
+Sunday           704     0.528409
+Monday           655     0.531298
+
+-- appointment_time --
+                     n  noshow_rate
+appointment_time                   
+Morning           2116     0.506616
+Afternoon         1979     0.511875
+Evening            642     0.526480
+
+-- distance_band --
+                  n  noshow_rate
+distance_band                   
+0-5km          1103     0.486854
+5-10km         1595     0.493417
+10-15km        1069     0.513564
+15-20km         509     0.542240
+20+km           375     0.605333
+
+Saved HealthConnect_Week7_Tested_Data.csv with validated risk_score/risk_segment columns.
